@@ -1,0 +1,9 @@
+k=5
+N=30
+pm=0.01
+pc=0.6
+G=0.6
+h=1.88
+temperatura=0.8
+fitnessConst1=0.7
+fitnessConst2=0.3
