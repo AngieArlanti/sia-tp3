@@ -1,8 +1,15 @@
-k=5
+k=60
 N=100
 pm=0.01
 pc=0.6
 G=0.6
+crossoverMethod=uniform
+selectionBlend=1
+selectionMethod1=roulette
+selectionMethod2=elite
+replacementBlend=1
+replacementMethod1=r1
+replacementMethod2=r2
 temperatura=0.8
 className=assasin2
 fitnessConst1=0.7

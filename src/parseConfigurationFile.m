@@ -1,31 +1,30 @@
-# Prevent Octave from thinking that this
-# is a function file:
-#1;
-#Return a config object with all the data from the configuration file
+%  Prevent Octave from thinking that this
+%  is a function file:
+% 1;
+% Return a config object with all the data from the configuration file
 function config = parseConfigurationFile(configurationFilePath)
-	fid = fopen (configurationFilePath, 'r');
-	config.alpha = 0;
-	while (!feof (fid))
-  	line = fgetl (fid);
-    disp(line);
+  fid = fopen (configurationFilePath, 'r');
+  config.alpha = 0;
+  while (!feof (fid))
+    line = fgetl (fid);
     if length(line) == 0 || line(1) == '%'
       continue;
-    endif
+    end
 
-  	split = strsplit(line, '=');
-  	key = split{1};
-  	value = split{2};
-  	switch key
-  		case 'k'
-  			config.k = str2num(value);
-  		case 'N'
+    split = strsplit(line, '=');
+    key = split{1};
+    value = split{2};
+    switch key
+      case 'k'
+        config.k = str2num(value);
+      case 'N'
         config.N = str2num(value);
-			case 'pm'
-	      config.pm = str2double(value);
-  		case 'pc'
-  			config.pc = str2double(value);
-  		case 'G'
-  			config.G = str2double(value);
+      case 'pm'
+        config.pm = str2double(value);
+      case 'pc'
+        config.pc = str2double(value);
+      case 'G'
+        config.G = str2double(value);
       case 'className'
         config.className = value;
       case 'temperatura'
@@ -34,8 +33,22 @@ function config = parseConfigurationFile(configurationFilePath)
         config.fitnessConst1 = str2double(value);
       case 'fitnessConst2'
         config.fitnessConst2 = str2double(value);
-  	endswitch
-	endwhile
-  fclose (fid);
+      case 'selectionBlend'
+        config.selectionBlend = str2double(value);
+      case 'selectionMethod1'
+        config.selectionMethod1 = value;
+      case 'selectionMethod2'
+        config.selectionMethod2 = value;
+      case 'replacementBlend'
+       config.replacementBlend = str2double(value);
+      case 'replacementMethod1'
+        config.replacementMethod1 = value;
+      case 'replacementMethod2'
+        config.replacementMethod2 = value;
+      case 'crossoverMethod'
+        config.crossoverMethod = value;
+    end
+  end
+  fclose(fid);
   printf('\n');
-endfunction
+end

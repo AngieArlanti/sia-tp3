@@ -3,4 +3,4 @@ function attack = calculateAttack(stats, atm)
 	agility = stats(2);
 	expertise = stats(3);
 	attack = (agility + expertise) * strength * atm;
-endfunction
+end

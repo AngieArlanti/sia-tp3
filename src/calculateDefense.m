@@ -3,4 +3,4 @@ function attack = calculateDefense(stats, dem)
 	resistance = stats(4);
 	life = stats(5);
 	attack = (resistance + expertise) * life * dem;
-endfunction
+end
