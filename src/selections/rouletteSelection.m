@@ -1,4 +1,4 @@
-function selection = rouletteSelection(population, relativeFitness, configuration, r = rand(1:k))
+function selection = rouletteSelection(population, relativeFitness, configuration, r = rand(1,configuration.k))
 	q = cumsum(relativeFitness);
 	selection={};
 	s=1;

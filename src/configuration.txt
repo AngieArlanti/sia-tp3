@@ -1,4 +1,4 @@
-k=60
+k=3
 N=100
 pm=0.01
 pc=0.6
@@ -10,7 +10,7 @@ selectionMethod2=elite
 replacementBlend=1
 replacementMethod1=r1
 replacementMethod2=r2
-temperatura=0.8
+temperature=0.8
 className=assasin2
 fitnessConst1=0.7
 fitnessConst2=0.3
