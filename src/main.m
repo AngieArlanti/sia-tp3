@@ -1,5 +1,5 @@
 function a = main()
-
+  temperature = 1;
   items = {
     dlmread('../resources/armas.tsv', '\t',1, 1),
     dlmread('../resources/botas.tsv', '\t',1, 1),
@@ -13,7 +13,7 @@ function a = main()
   population = generatePopulation(configuration.N);
   % vector de fitness para cada status
   populationFitnesses = calculateAllFitness(population, items, configuration);
-  selectedPopulation = selectParents(population, populationFitnesses, configuration);
+  [temperature, selectedPopulation] = selectParents(population, populationFitnesses, configuration, temperature);
 
   % This should probably be done inside the selectParents function in some replacement methods
   children = crossover(selectedPopulation, configuration);

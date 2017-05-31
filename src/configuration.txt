@@ -1,11 +1,11 @@
-k=3
+k=30
 N=100
 pm=0.01
 pc=0.6
 G=0.6
 crossoverMethod=uniform
-selectionBlend=1
-selectionMethod1=roulette
+selectionBlend=0.5
+selectionMethod1=boltzmann
 selectionMethod2=elite
 replacementBlend=1
 replacementMethod1=r1

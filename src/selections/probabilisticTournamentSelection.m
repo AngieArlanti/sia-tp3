@@ -1,9 +1,9 @@
 % TODO
 
-function selection = probabilisticTournamentSelection(population, relativeFitnesses, configuration)
+function selection = probabilisticTournamentSelection(population, fitnesses, k)
 %probabilisticTournamentSelection - Selects future parents using probabilisticTournament selection
 %
-% Syntax: selection = probabilisticTournamentSelection(population, relativeFitnesses, configuration)
+% Syntax: selection = probabilisticTournamentSelection(population, fitnesses, k)
 %
   
 end
