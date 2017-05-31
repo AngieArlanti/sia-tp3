@@ -1,5 +1,5 @@
 function a = main()
-  source('selectParents.m');
+
   items = {
     dlmread('../resources/armas.tsv', '\t',1, 1),
     dlmread('../resources/botas.tsv', '\t',1, 1),
@@ -17,5 +17,5 @@ function a = main()
 
   % This should probably be done inside the selectParents function in some replacement methods
   children = crossover(selectedPopulation, configuration);
-  a = children;
+  a = mutation(children, configuration.pm);
 end
