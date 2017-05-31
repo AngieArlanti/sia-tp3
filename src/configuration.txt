@@ -3,6 +3,7 @@ N=100
 pm=0.01
 pc=0.6
 G=0.6
+m=2
 crossoverMethod=uniform
 selectionBlend=1
 selectionMethod1=roulette
