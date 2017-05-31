@@ -29,8 +29,8 @@ function config = parseConfigurationFile(configurationFilePath)
         config.G = str2double(value);
       case 'className'
         config.className = value;
-      case 'temperatura'
-        config.temperatura = str2double(value);
+      case 'temperature'
+        config.temperature = str2double(value);
       case 'fitnessConst1'
         config.fitnessConst1 = str2double(value);
       case 'fitnessConst2'
