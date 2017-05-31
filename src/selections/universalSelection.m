@@ -3,12 +3,13 @@ function selection = universalSelection(population, relativeFitnesses, configura
 %
 % Syntax: selection = universalSelection(population, relativeFitnesses, configuration)
 %
+  k = configuration.k;
   rj =[];
   r = rand();
   for j=1:k
     aux=(r+j-1)/k;
     rj = [rj aux];
   end
-
-  selection = rouletteSelection(population, relativeFitnesses, configuration.k, rj);
+  
+  selection = rouletteSelection(population, relativeFitnesses, k, rj);
 end
