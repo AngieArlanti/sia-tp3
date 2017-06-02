@@ -1,7 +1,7 @@
-function [temperature, selected] = selectParents(mode, population, relativeFitnesses, configuration, temperature)
+function [temperature, selected] = selectParents(mode, population, fitnesses, configuration, temperature)
   permutation = randperm(length(population));
   shuffledPopulation = population(permutation);
-  shuffledFitnesses = relativeFitnesses(permutation);
+  shuffledFitnesses = fitnesses(permutation);
   
   if mode == 'selection'
     blend = configuration.selectionBlend;
@@ -16,7 +16,7 @@ function [temperature, selected] = selectParents(mode, population, relativeFitne
   if (blend != 0)
     method1Amount = length(population) * blend;
     method1Population = shuffledPopulation(1:method1Amount);
-    method1Fitnesses = relativeFitnesses(1:method1Amount) / blend;
+    method1Fitnesses = fitnesses(1:method1Amount) / blend;
     method1k = configuration.k * blend;
     disp(cstrcat(mode, ' ', mat2str(method1k), ' with ', method1));
     method1Selection = selectWithMethod(method1,
@@ -29,7 +29,7 @@ function [temperature, selected] = selectParents(mode, population, relativeFitne
 
   if (blend != 1)
     method2Population = shuffledPopulation(method1Amount + 1:length(population));
-    method2Fitnesses = relativeFitnesses(method1Amount + 1:length(relativeFitnesses))/(1 - blend);
+    method2Fitnesses = fitnesses(method1Amount + 1:length(fitnesses))/(1 - blend);
     method2k = configuration.k * (1 - blend);
     disp(cstrcat(mode, ' ', mat2str(method2k), ' with ', configuration.selectionMethod2));
     method2Selection = selectWithMethod(method2,
@@ -59,7 +59,7 @@ function selection = selectWithMethod(selectionMethod, population, fitnesses, k,
   case 'universal'
     selection = universalSelection(population, fitnesses, k);
   case 'boltzmann'
-    [selection, temperature] = boltzmannSelection(population, fitnesses, temperature, temperatureConstant, k)
+    [selection, temperature] = boltzmannSelection(population, fitnesses, temperature, temperatureConstant, k);
   case {'ranking', 'deterministicTournament', 'probabilisticTournament'}
     disp(strcat(selectionMethod, ' selection not implemented'));
   otherwise
