@@ -1,7 +1,6 @@
-function replacement(population, children, configuration)
-  source('replacements/r1Replacement.m');
-  source('replacements/r2Replacement.m');
-  source('replacements/r3Replacement.m');
+function replacement(population, fitnesses, children, childrenFitnesses, configuration, temperature)
+  source('replacements/replacement2.m');
+  source('replacements/replacement3.m');
 
   rMethod = replacementMethod(configuration)
   switch rMethod

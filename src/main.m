@@ -11,11 +11,19 @@ function a = main()
   configuration = parseConfigurationFile('./configuration.txt');
   % struct de structs de vector de ids y la h (de cada item)
   population = generatePopulation(configuration.N);
-  % vector de fitness para cada status
   populationFitnesses = calculateAllFitness(population, items, configuration);
-  [temperature, selectedPopulation] = selectForCrossover(population, populationFitnesses, configuration, temperature);
+  generation = 1;
+  while !cutCondition(population, populationFitnesses, generation, configuration)
+    % vector de fitness para cada status
+    
+    [temperature, selectedPopulation] = selectForCrossover(population, populationFitnesses, configuration, temperature);
 
-  % This should probably be done inside the selectParents function in some replacement methods
-  children = crossover(selectedPopulation, configuration);
-  a = mutation(children, configuration.pm);
+    % This should probably be done inside the selectParents function in some replacement methods
+    children = crossover(selectedPopulation, configuration);
+    mutatedChildren = mutation(children, configuration.pm);
+    childrenFitnesses = calculateAllFitness(mutatedChildren, items, configuration);
+    population = replacement(population, populationFitnesses, mutatedChildren, childrenFitnesses, configuration, temperature);
+    populationFitnesses = calculateAllFitness(population, items, configuration);
+    generation++;
+  end
 end

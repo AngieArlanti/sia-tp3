@@ -47,6 +47,10 @@ function config = parseConfigurationFile(configurationFilePath)
         config.replacementMethod2 = value;
       case 'crossoverMethod'
         config.crossoverMethod = value;
+      case 'cutCondition'
+        config.cutCondition = value;
+      case 'maxGenerations'
+      config.maxGenerations = str2num(value);
     end
   end
   fclose(fid);

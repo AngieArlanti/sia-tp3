@@ -1,4 +1,4 @@
-function [temperature, selected] = selectParents(mode, population, fitnesses, configuration, temperature)
+function [temperature, selected] = selectParents(mode, population, fitnesses, configuration, temperature, k = configuration.k)
   permutation = randperm(length(population));
   shuffledPopulation = population(permutation);
   shuffledFitnesses = fitnesses(permutation);
@@ -17,7 +17,7 @@ function [temperature, selected] = selectParents(mode, population, fitnesses, co
     method1Amount = length(population) * blend;
     method1Population = shuffledPopulation(1:method1Amount);
     method1Fitnesses = fitnesses(1:method1Amount) / blend;
-    method1k = configuration.k * blend;
+    method1k = k * blend;
     disp(cstrcat(mode, ' ', mat2str(method1k), ' with ', method1));
     method1Selection = selectWithMethod(method1,
                                         method1Population,
@@ -30,7 +30,7 @@ function [temperature, selected] = selectParents(mode, population, fitnesses, co
   if (blend != 1)
     method2Population = shuffledPopulation(method1Amount + 1:length(population));
     method2Fitnesses = fitnesses(method1Amount + 1:length(fitnesses))/(1 - blend);
-    method2k = configuration.k * (1 - blend);
+    method2k = k * (1 - blend);
     disp(cstrcat(mode, ' ', mat2str(method2k), ' with ', configuration.selectionMethod2));
     method2Selection = selectWithMethod(method2,
                                         method2Population,
