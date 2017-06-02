@@ -1,15 +1,25 @@
-function [temperature, selected] = selectParents(population, relativeFitnesses, configuration, temperature)
+function [temperature, selected] = selectParents(mode, population, relativeFitnesses, configuration, temperature)
   permutation = randperm(length(population));
   shuffledPopulation = population(permutation);
   shuffledFitnesses = relativeFitnesses(permutation);
   
-  if (configuration.selectionBlend != 0)
-    method1Amount = length(population) * configuration.selectionBlend;
+  if mode == 'selection'
+    blend = configuration.selectionBlend;
+    method1 = configuration.selectionMethod1;
+    method2 = configuration.selectionMethod2;
+  elseif mode == 'replacement'
+    blend = configuration.replacementBlend;
+    method1 = configuration.replacementMethod1;
+    method2 = configuration.replacementMethod2;
+  end
+    
+  if (blend != 0)
+    method1Amount = length(population) * blend;
     method1Population = shuffledPopulation(1:method1Amount);
-    method1Fitnesses = relativeFitnesses(1:method1Amount) / configuration.selectionBlend;
-    method1k = configuration.k * configuration.selectionBlend;
-    disp(cstrcat('selecting ', mat2str(method1k), ' with ', configuration.selectionMethod1));
-    method1Selection = selectWithMethod(configuration.selectionMethod1,
+    method1Fitnesses = relativeFitnesses(1:method1Amount) / blend;
+    method1k = configuration.k * blend;
+    disp(cstrcat(mode, ' ', mat2str(method1k), ' with ', method1));
+    method1Selection = selectWithMethod(method1,
                                         method1Population,
                                         method1Fitnesses,
                                         method1k,
@@ -17,12 +27,12 @@ function [temperature, selected] = selectParents(population, relativeFitnesses, 
                                         temperature);
   end
 
-  if (configuration.selectionBlend != 1)
+  if (blend != 1)
     method2Population = shuffledPopulation(method1Amount + 1:length(population));
-    method2Fitnesses = relativeFitnesses(method1Amount + 1:length(relativeFitnesses))/(1 - configuration.selectionBlend);
-    method2k = configuration.k * (1 - configuration.selectionBlend);
-    disp(cstrcat('selecting ', mat2str(method2k), ' with ', configuration.selectionMethod2));
-    method2Selection = selectWithMethod(configuration.selectionMethod2,
+    method2Fitnesses = relativeFitnesses(method1Amount + 1:length(relativeFitnesses))/(1 - blend);
+    method2k = configuration.k * (1 - blend);
+    disp(cstrcat(mode, ' ', mat2str(method2k), ' with ', configuration.selectionMethod2));
+    method2Selection = selectWithMethod(method2,
                                         method2Population,
                                         method2Fitnesses,
                                         method2k,
