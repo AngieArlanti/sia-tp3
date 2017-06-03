@@ -3,11 +3,11 @@ function [temperature, selected] = selectParents(mode, population, fitnesses, co
   shuffledPopulation = population(permutation);
   shuffledFitnesses = fitnesses(permutation);
   
-  if mode == 'selection'
+  if strcmp(mode,'selection')
     blend = configuration.selectionBlend;
     method1 = configuration.selectionMethod1;
     method2 = configuration.selectionMethod2;
-  elseif mode == 'replacement'
+  elseif strcmp(mode,'replacement')
     blend = configuration.replacementBlend;
     method1 = configuration.replacementMethod1;
     method2 = configuration.replacementMethod2;

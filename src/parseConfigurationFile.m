@@ -41,10 +41,10 @@ function config = parseConfigurationFile(configurationFilePath)
         config.selectionMethod2 = value;
       case 'replacementBlend'
        config.replacementBlend = str2double(value);
-      case 'replacementMethod1'
-        config.replacementMethod1 = value;
       case 'replacementMethod2'
         config.replacementMethod2 = value;
+      case 'replacementMethod3'
+        config.replacementMethod3 = value;
       case 'crossoverMethod'
         config.crossoverMethod = value;
       case 'cutCondition'
