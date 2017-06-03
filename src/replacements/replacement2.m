@@ -1,21 +1,16 @@
-function [G newPopulation] = replacement2(population, fitnesses, children, childrenFitnesses, configuration, temperature)
-  
+function [temperature newPopulation] = replacement2(population, fitnesses, children, childrenFitnesses, configuration, temperature)
   N = configuration.N;
-  k = configuration.k
+  k = configuration.k;
 
-  if(length(population)!= N|| length(children)!= k)
+  if (length(population) != N || length(children) != k)
     disp('ERROR: N != population or children != k');
-      exit(1);
-    end
+    % exit(1);
+  end
 
   x = N - k;
 
-  selection1 = selectForReplacement(population, fitnesses, configuration, temperature);
-  
+  [temperature selection1] = selectForReplacement(population, fitnesses, configuration, temperature, x);
+
   newPopulation = generateCombinatedPopulation(selection1, children);
-
-  G = k/N;
-
 end
-  
 

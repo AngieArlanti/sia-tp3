@@ -3,5 +3,5 @@ function [temperature, selected] = selectForReplacement(population, fitnesses, c
 %
 % Syntax: [temperature, selected] = selectForReplacement(population, fitnesses, configuration, temperature)
 %
-  [temperature, selected] = selectParents('replacement', population, fitnesses, configuration, temperature);
+  [temperature, selected] = selectParents('replacement', population, fitnesses, configuration, temperature, k);
 end

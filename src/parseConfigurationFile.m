@@ -39,20 +39,23 @@ function config = parseConfigurationFile(configurationFilePath)
         config.selectionMethod1 = value;
       case 'selectionMethod2'
         config.selectionMethod2 = value;
-      case 'replacementBlend'
-       config.replacementBlend = str2double(value);
-      case 'replacementMethod2'
-        config.replacementMethod2 = value;
-      case 'replacementMethod3'
-        config.replacementMethod3 = value;
+      case 'selectionBlend2'
+       config.selectionBlend2 = str2double(value);
+      case 'selectionMethod3'
+        config.selectionMethod3 = value;
+      case 'selectionMethod4'
+        config.selectionMethod4 = value;
+      case 'replacementMethod'
+        config.replacementMethod = value;
       case 'crossoverMethod'
         config.crossoverMethod = value;
       case 'cutCondition'
         config.cutCondition = value;
       case 'maxGenerations'
-      config.maxGenerations = str2num(value);
+        config.maxGenerations = str2num(value);
+      case 'debug'
+        config.debug = value;
     end
   end
   fclose(fid);
-  printf('\n');
 end

@@ -1,4 +1,4 @@
-function a = main()
+function [generation population maxFitnessIndividual] = main()
   temperature = 1;
   items = {
     dlmread('../resources/armas.tsv', '\t',1, 1),
@@ -15,15 +15,18 @@ function a = main()
   generation = 1;
   while !cutCondition(population, populationFitnesses, generation, configuration)
     % vector de fitness para cada status
-    
-    [temperature, selectedPopulation] = selectForCrossover(population, populationFitnesses, configuration, temperature);
+
+    [temperature selectedPopulation] = selectForCrossover(population, populationFitnesses, configuration, temperature);
 
     % This should probably be done inside the selectParents function in some replacement methods
     children = crossover(selectedPopulation, configuration);
     mutatedChildren = mutation(children, configuration.pm);
     childrenFitnesses = calculateAllFitness(mutatedChildren, items, configuration);
-    population = replacement(population, populationFitnesses, mutatedChildren, childrenFitnesses, configuration, temperature);
+    [temperature population] = replacement(population, populationFitnesses, mutatedChildren, childrenFitnesses, configuration, temperature);
     populationFitnesses = calculateAllFitness(population, items, configuration);
-    generation++;
+    [maxFitness maxFitnessIndex] = max(populationFitnesses);
+    maxFitness
+    maxFitnessIndividual = population{maxFitnessIndex};
+    ++generation
   end
 end
