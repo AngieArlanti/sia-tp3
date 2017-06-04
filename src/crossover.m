@@ -21,8 +21,8 @@ function children = singleCrossover(parent1, parent2, configuration)
       children = anularCrossover(parent1, parent2, configuration);
     case 'twoPoints'
       children = twoPointsCrossover(parent1, parent2, configuration);
-    case { 'onePoint' }
-      disp(strcat(configuration.crossoverMethod, ' crossover not implemented'));
+    case 'onePoint' 
+      children = onePointCrossover(parent1, parent2, configuration);
     otherwise
       disp('ERROR: invalid crossover method');
       exit(1);
