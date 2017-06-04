@@ -64,14 +64,6 @@ function [temperature, selected] = selectParents(mode, population, fitnesses, co
 end
 
 function selection = selectWithMethod(selectionMethod, population, fitnesses, k, temperatureConstant, temperature)
-  source('selections/rouletteSelection.m');
-  source('selections/rankingSelection.m');
-  source('selections/eliteSelection.m');
-  source('selections/universalSelection.m');
-  source('selections/boltzmannSelection.m');
-  source('selections/deterministicTournamentSelection.m');
-  source('selections/probabilisticTournamentSelection.m');
-
   switch selectionMethod
   case 'roulette'
     selection = rouletteSelection(population, fitnesses, k);

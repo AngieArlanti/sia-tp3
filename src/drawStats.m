@@ -1,4 +1,5 @@
 function result = drawStats(stats, maximum = max(stats))
+  pkg load geometry;
   angles = (0:4)*2*pi/5;
   labels = {'Fuerza', 'Agilidad', 'Pericia', 'Resistencia', 'Vida'};
   for i = 1:5

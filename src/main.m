@@ -25,7 +25,7 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
     figure(2);
     newplot;
     plot(maxFitnesses);
-    xlim([1, 100]);
+    xlim([1, 15]);
     ylim([0, 40]);
     refresh;
     ++generation;

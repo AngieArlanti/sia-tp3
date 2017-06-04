@@ -8,6 +8,6 @@ function multipliers = getClassMultiplier(className)
     case 'assasin2'
       multipliers = [0.9, 1.0, 1.1, 1.0, 0.9];
     otherwise
-        multipliers = [1, 1, 1, 1, 1];
+      multipliers = [1, 1, 1, 1, 1];
   end
 end
