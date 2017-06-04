@@ -1,6 +1,4 @@
 function [temperature newPopulation] = replacement(population, fitnesses, children, childrenFitnesses, configuration, temperature)
-  source('replacements/replacement2.m');
-  source('replacements/replacement3.m');
 
   rMethod = configuration.replacementMethod;
   switch rMethod

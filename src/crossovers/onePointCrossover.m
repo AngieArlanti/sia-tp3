@@ -6,8 +6,6 @@ function children = onePointCrossover(parent1, parent2, configuration)
 % Syntax: children = onePointCrossover(parent1, parent2, configuration)
 %
 % Long description
-	source('../genesToIndividual.m');
-	source('../individualToGenes.m');
 	len = length(parent1{1}) + length(parent1{2});
 
 	r = ceil(rand(1,1)*len);

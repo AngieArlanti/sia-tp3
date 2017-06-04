@@ -1,12 +1,13 @@
 debug=f
 hybridWithPartitions=f
-N=2000
-k=1400
+N=200
+k=140
 pm=0.05
 pc=0.6
 G=0.6
 m=2
 cutCondition=maxGenerations
+contentPreviousIndexToCompare=10
 maxGenerations=100
 crossoverMethod=uniform
 replacementMethod=r2

@@ -1,13 +1,4 @@
 function selection = testSelections()
-	source('selections/rouletteSelection.m');
-  source('selections/rankingSelection.m');
-  source('selections/eliteSelection.m');
-  source('selections/universalSelection.m');
-  source('selections/boltzmannSelection.m');
-  source('selections/temperatureFunction.m');
-  source('selections/expValuesFunction.m');
-  source('selections/deterministicTournamentSelection.m');
-  source('selections/probabilisticTournamentSelection.m');
 
 	configuration = parseConfigurationFile("./configuration.txt");
 

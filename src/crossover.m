@@ -1,8 +1,4 @@
 function children = crossover(population, configuration)
-  source('crossovers/uniformCrossover.m');
-  source('crossovers/onePointCrossover.m');
-  source('crossovers/twoPointsCrossover.m');
-  source('crossovers/anularCrossover.m');
 
   children = {};
   for i = 1:length(population)/2 % FIXME: I believe this should always return length(population) children
