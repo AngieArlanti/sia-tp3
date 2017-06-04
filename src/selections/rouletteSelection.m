@@ -3,13 +3,13 @@ function selection = rouletteSelection(population,
                                       k,
                                       r = rand(1, k))
   relativeFitnesses = calculateRelativeFitnesses(fitnesses);
-  q = cumsum(relativeFitnesses);
+  q = [0 cumsum(relativeFitnesses)];
   selection={};
   s=1;
   for j = 1:length(r)
     for i = 2:length(q)
       if(q(i-1) < r(j) && r(j) < q(i))
-        selection{s} = population{i};
+        selection{s} = population{i - 1};
         s++;
       end
     end

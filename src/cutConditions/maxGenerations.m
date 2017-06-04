@@ -3,5 +3,5 @@ function boolean = maxGenerations(generation, configuration)
 %
 % Syntax: boolean = maxGenerations(generation)
 %
-  boolean = generation >= configuration.maxGenerations;
+  boolean = generation > configuration.maxGenerations;
 end
