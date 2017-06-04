@@ -57,6 +57,8 @@ function config = parseConfigurationFile(configurationFilePath)
         config.maxGenerations = str2num(value);
       case 'debug'
         config.debug = value;
+      case 'contentPreviousIndexToCompare'
+        config.contentPreviousIndexToCompare =  str2num(value);
       case 'hybridWithPartitions'
         config.hybridWithPartitions = value;
     end

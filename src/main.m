@@ -7,8 +7,7 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
   % struct de structs de vector de ids y la h (de cada item)
   population = generatePopulation(configuration.N);
   populationFitnesses = calculateAllFitness(population, items, configuration);
-  generation = 1;
-  while !cutCondition(population, populationFitnesses, generation, configuration)
+  while !cutCondition(population, populationFitnesses, generation, configuration,maxFitnesses)
     % vector de fitness para cada status
 
     [temperature selectedPopulation] = selectForCrossover(population, populationFitnesses, configuration, temperature);
