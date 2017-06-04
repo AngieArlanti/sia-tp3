@@ -1,5 +1,6 @@
 function [generation maxFitness maxFitnessIndividual] = main(items = readItems, configuration = parseConfigurationFile('./configuration.txt'))
   addpath(genpath('.'));
+  clf;
   temperature = 1;
   maxFitnesses = [];
   averageFitnesses = [];
@@ -26,11 +27,14 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
     drawBestIndividualItems(maxFitnessIndividual, items);
     figure(2);
     newplot;
+    subplot(1, 2 ,1);
     plot(maxFitnesses, 'r');
     hold on;
     plot(averageFitnesses, 'b');
-    xlim([1, 100]);
-    ylim([0, 25]);
+    xlim([1, 25]);
+    ylim([0, 40]);
+    subplot(1, 2 ,2);
+    hist(populationFitnesses);
     refresh;
     ++generation;
   end
