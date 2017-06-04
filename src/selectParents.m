@@ -14,10 +14,16 @@ function [temperature, selected] = selectParents(mode, population, fitnesses, co
   end
 
   if (blend != 0)
-    method1Amount = ceil(length(population) * blend);
-    method1Population = shuffledPopulation(1:method1Amount);
-    method1Fitnesses = shuffledFitnesses(1:method1Amount) / blend;
-    method1k = ceil(k * blend);
+    method1Amount = round(length(population) * blend);
+    if strcmp(configuration.hybridWithPartitions, 't')
+      method1Population = shuffledPopulation(1:method1Amount);
+      method1Fitnesses = shuffledFitnesses(1:method1Amount) / blend;
+    else
+      method1Population = shuffledPopulation;
+      method1Fitnesses = shuffledFitnesses;
+    end
+
+    method1k = round(k * blend);
     if configuration.debug == 't'
       disp(cstrcat(mode, ' ', mat2str(method1k), ' with ', method1));
     end
@@ -33,9 +39,15 @@ function [temperature, selected] = selectParents(mode, population, fitnesses, co
   end
 
   if (blend != 1)
-    method2Population = shuffledPopulation(method1Amount + 1:length(population));
-    method2Fitnesses = shuffledFitnesses(method1Amount + 1:length(fitnesses))/(1 - blend);
-    method2k = floor(k * (1 - blend));
+    if strcmp(configuration.hybridWithPartitions, 't')
+      method2Population = shuffledPopulation(method1Amount + 1:length(population));
+      method2Fitnesses = shuffledFitnesses(method1Amount + 1:length(fitnesses))/(1 - blend);
+    else
+      method2Population = shuffledPopulation;
+      method2Fitnesses = shuffledFitnesses;
+    end
+
+    method2k = round(k * (1 - blend));
     if configuration.debug == 't'
       disp(cstrcat(mode, ' ', mat2str(method2k), ' with ', method2));
     end
