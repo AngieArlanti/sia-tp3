@@ -13,11 +13,15 @@ function children = crossover(population, configuration)
   randperm(length(population));
 end
 
-function child = singleCrossover(parent1, parent2, configuration)
+function children = singleCrossover(parent1, parent2, configuration)
   switch configuration.crossoverMethod
     case 'uniform'
-      child = uniformCrossover(parent1, parent2, configuration);
-    case { 'onePoint', 'twoPoints', 'anular' }
+      children = uniformCrossover(parent1, parent2, configuration);
+    case 'anular'
+      children = anularCrossover(parent1, parent2, configuration);
+    case 'twoPoints'
+      children = twoPointsCrossover(parent1, parent2, configuration);
+    case { 'onePoint' }
       disp(strcat(configuration.crossoverMethod, ' crossover not implemented'));
     otherwise
       disp('ERROR: invalid crossover method');

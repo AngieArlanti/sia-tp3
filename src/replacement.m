@@ -1,23 +1,15 @@
-function replacement(population, children, configuration)
-  source('replacements/r1Replacement.m');
-  source('replacements/r2Replacement.m');
-  source('replacements/r3Replacement.m');
+function [temperature newPopulation] = replacement(population, fitnesses, children, childrenFitnesses, configuration, temperature)
+  source('replacements/replacement2.m');
+  source('replacements/replacement3.m');
 
-  rMethod = replacementMethod(configuration)
+  rMethod = configuration.replacementMethod;
   switch rMethod
-    case { 'r1', 'r2', 'r3' }
-      disp(strcat(rMethod, ' replacement not implemented');
+    case 'r2'
+      [temperature newPopulation] = replacement2(population, fitnesses, children, childrenFitnesses, configuration, temperature);
+    case 'r3'
+      [temperature newPopulation] = replacement3(population, fitnesses, children, childrenFitnesses, configuration, temperature);
     otherwise
       disp('ERROR: Replacement method not valid');
       exit(1);
     end
-  end
-end
-
-function replacementMethod = replacementMethod(configuration)
-  if rand() < configuration.replacementBlend
-    replacementMethod = configuration.replacementMethod1;
-  else
-    replacementMethod = configuration.replacementMethod2;
-  end
 end

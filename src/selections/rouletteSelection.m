@@ -14,7 +14,8 @@ function selection = rouletteSelection(population,
       end
     end
   end
-  if ((s-k) != 1)
+  if(length(selection) != k)
     disp('ERROR: Roulette generated less values than expected');
+    disp(cstrcat('Generated:', mat2str(length(selection)), 'requested: ', mat2str(k)))
   end
 end
