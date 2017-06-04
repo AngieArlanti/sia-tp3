@@ -2,6 +2,7 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
   addpath(genpath('.'));
   temperature = 1;
   maxFitnesses = [];
+  averageFitnesses = [];
   % struct de structs de vector de ids y la h (de cada item)
   population = generatePopulation(configuration.N);
   populationFitnesses = calculateAllFitness(population, items, configuration);
@@ -20,13 +21,16 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
     [maxFitness maxFitnessIndex] = max(populationFitnesses);
     maxFitnesses = [maxFitnesses maxFitness];
     maxFitnessIndividual = population{maxFitnessIndex};
+    averageFitnesses = [averageFitnesses sum(populationFitnesses)/length(populationFitnesses)];
     figure(1);
     drawBestIndividualItems(maxFitnessIndividual, items);
     figure(2);
     newplot;
-    plot(maxFitnesses);
-    xlim([1, 15]);
-    ylim([0, 40]);
+    plot(maxFitnesses, 'r');
+    hold on;
+    plot(averageFitnesses, 'b');
+    xlim([1, 100]);
+    ylim([0, 25]);
     refresh;
     ++generation;
   end
