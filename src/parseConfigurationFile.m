@@ -19,6 +19,8 @@ function config = parseConfigurationFile(configurationFilePath)
         config.k = str2num(value);
       case 'N'
         config.N = str2num(value);
+      case 'm'
+        config.m = str2num(value);
       case 'pm'
         config.pm = str2double(value);
       case 'pc'
