@@ -18,5 +18,4 @@ function boolean = structureHasChanged(population, previousPopulation ,configura
   else
     boolean = 1;
   end
-
 end
