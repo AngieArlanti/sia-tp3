@@ -1,5 +1,4 @@
 function children = crossover(population, configuration)
-
   children = {};
   for i = 1:length(population)/2 % FIXME: I believe this should always return length(population) children
     currentChildren = singleCrossover(population{2*i - 1}, population{2*i}, configuration);

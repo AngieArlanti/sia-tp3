@@ -1,8 +1,8 @@
 debug=f
-hybridWithPartitions=f
-N=200
-k=140
-pm=0.05
+hybridWithPartitions=t
+N=2500
+k=2000
+pm=0.1
 pc=0.6
 G=0.6
 m=2

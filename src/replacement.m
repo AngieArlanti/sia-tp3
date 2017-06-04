@@ -1,5 +1,4 @@
 function [temperature newPopulation] = replacement(population, fitnesses, children, childrenFitnesses, configuration, temperature)
-
   rMethod = configuration.replacementMethod;
   switch rMethod
     case 'r2'

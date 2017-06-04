@@ -64,7 +64,6 @@ function [temperature, selected] = selectParents(mode, population, fitnesses, co
 end
 
 function selection = selectWithMethod(selectionMethod, population, fitnesses, k, temperatureConstant, temperature)
-
   switch selectionMethod
   case 'roulette'
     selection = rouletteSelection(population, fitnesses, k);
