@@ -1,14 +1,7 @@
-function [generation population maxFitnessIndividual] = main()
+function [generation population maxFitnessIndividual] = main(items = readItems, configuration = parseConfigurationFile('./configuration.txt'))
+  addpath(genpath('.'));
   temperature = 1;
-  items = {
-    dlmread('../resources/armas.tsv', '\t',1, 1),
-    dlmread('../resources/botas.tsv', '\t',1, 1),
-    dlmread('../resources/cascos.tsv', '\t',1, 1),
-    dlmread('../resources/guantes.tsv', '\t',1, 1),
-    dlmread('../resources/pecheras.tsv', '\t',1, 1)
-  };
-
-  configuration = parseConfigurationFile('./configuration.txt');
+  maxFitnesses = [];
   % struct de structs de vector de ids y la h (de cada item)
   population = generatePopulation(configuration.N);
   populationFitnesses = calculateAllFitness(population, items, configuration);
@@ -25,8 +18,16 @@ function [generation population maxFitnessIndividual] = main()
     [temperature population] = replacement(population, populationFitnesses, mutatedChildren, childrenFitnesses, configuration, temperature);
     populationFitnesses = calculateAllFitness(population, items, configuration);
     [maxFitness maxFitnessIndex] = max(populationFitnesses);
-    maxFitness
+    maxFitnesses = [maxFitnesses maxFitness];
     maxFitnessIndividual = population{maxFitnessIndex};
-    ++generation
+    figure(1);
+    drawBestIndividualItems(maxFitnessIndividual, items);
+    figure(2);
+    newplot;
+    plot(maxFitnesses);
+    xlim([1, 50]);
+    ylim([0, 40]);
+    refresh;
+    ++generation;
   end
 end
