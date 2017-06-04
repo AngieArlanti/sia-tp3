@@ -1,4 +1,4 @@
-function [generation population maxFitnessIndividual] = main(items = readItems, configuration = parseConfigurationFile('./configuration.txt'))
+function [generation maxFitness maxFitnessIndividual] = main(items = readItems, configuration = parseConfigurationFile('./configuration.txt'))
   addpath(genpath('.'));
   temperature = 1;
   maxFitnesses = [];
@@ -25,7 +25,7 @@ function [generation population maxFitnessIndividual] = main(items = readItems, 
     figure(2);
     newplot;
     plot(maxFitnesses);
-    xlim([1, 50]);
+    xlim([1, 30]);
     ylim([0, 40]);
     refresh;
     ++generation;
