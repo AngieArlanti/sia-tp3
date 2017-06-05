@@ -10,7 +10,7 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
   populationFitnesses = calculateAllFitness(population, items, configuration);
   generation = 1;
   while !cutCondition(population, populationFitnesses, generation, configuration,maxFitnesses,previousPopulation)
-    % vector de fitness para cada status
+    % Fitness vector for each status
 
     [temperature selectedPopulation] = selectForCrossover(population, populationFitnesses, configuration, temperature);
 
@@ -25,23 +25,12 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
     maxFitnesses = [maxFitnesses maxFitness];
     maxFitnessIndividual = population{maxFitnessIndex};
     averageFitnesses = [averageFitnesses sum(populationFitnesses)/length(populationFitnesses)];
+    
+    %Plots
     figure(1);
     drawBestIndividualItems(maxFitnessIndividual, items);
     figure(2);
-    newplot;
-    subplot(1, 2 ,1);
-    plot(maxFitnesses, 'r');
-    hold on;
-    plot(averageFitnesses, 'b');
-    legend('Fitness máximo', 'Fitness promedio');
-    xlabel('generaciones');
-    ylabel('fitness');
-    xlim([1, 100]);
-    ylim([0, 40]);
-    subplot(1, 2 ,2);
-    hist(populationFitnesses);
-    xlabel('fitness');
-    ylabel('cantidad de individuos');
+    drawFitnessAndHistogram(maxFitnesses,averageFitnesses,populationFitnesses,configuration);
     refresh;
     ++generation;
   end
