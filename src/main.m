@@ -8,7 +8,7 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
   previousPopulation = {};
   population = generatePopulation(configuration.N);
   populationFitnesses = calculateAllFitness(population, items, configuration);
-  generation=1;
+  generation = 1;
   while !cutCondition(population, populationFitnesses, generation, configuration,maxFitnesses,previousPopulation)
     % vector de fitness para cada status
 
