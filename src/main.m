@@ -33,10 +33,15 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
     plot(maxFitnesses, 'r');
     hold on;
     plot(averageFitnesses, 'b');
-    xlim([1, 25]);
+    legend('Fitness máximo', 'Fitness promedio');
+    xlabel('generaciones');
+    ylabel('fitness');
+    xlim([1, 100]);
     ylim([0, 40]);
     subplot(1, 2 ,2);
     hist(populationFitnesses);
+    xlabel('fitness');
+    ylabel('cantidad de individuos');
     refresh;
     ++generation;
   end
