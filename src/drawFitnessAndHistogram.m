@@ -19,6 +19,7 @@ function result = drawFitnessAndHistogram(maxFitnesses,averageFitnesses,populati
 
   subplot(1, 2 ,2);
   hist(populationFitnesses);
+  set(get(gca,'child'),'FaceColor','blue','EdgeColor','black');
   xlabel('fitness');
   ylabel('cantidad de individuos');
 end

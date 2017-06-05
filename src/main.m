@@ -29,12 +29,14 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
     maxFitnessIndividual = population{maxFitnessIndex};
     averageFitnesses = [averageFitnesses sum(populationFitnesses)/length(populationFitnesses)];
     
-    %Plots
-    figure(1);
-    drawBestIndividualItems(maxFitnessIndividual, items);
-    figure(2);
-    drawFitnessAndHistogram(maxFitnesses,averageFitnesses,populationFitnesses,configuration);
-    refresh;
+    if(configuration.test == 'f')
+      drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration);
+    end
+
     ++generation;
+  end
+
+  if(configuration.test == 't')
+      drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration);
   end
 end

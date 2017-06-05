@@ -65,6 +65,8 @@ function config = parseConfigurationFile(configurationFilePath)
         config.bestSolutionFitness = str2num(value);
       case 'hybridWithPartitions'
         config.hybridWithPartitions = value;
+      case 'test'
+        config.test = value;
     end
   end
   fclose(fid);
