@@ -9,6 +9,7 @@ m=2
 cutCondition=maxGenerations
 contentPreviousIndexToCompare=10
 structureMaxMatchPercentage=0.8
+bestSolutionFitness=38
 maxGenerations=100
 crossoverMethod=uniform
 replacementMethod=r2
