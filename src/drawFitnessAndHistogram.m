@@ -8,9 +8,15 @@ function result = drawFitnessAndHistogram(maxFitnesses,averageFitnesses,populati
   xlabel('generaciones');
   ylabel('fitness');
   if(strcmp(configuration.cutCondition,'maxGenerations'))
-    xlim([1, configuration.maxGenerations]);		
+    xlim([1, configuration.maxGenerations]);
+  else if length(maxFitnesses) > 1
+    xlim([1, length(maxFitnesses)]);
   end
-  ylim([0, 40]);
+  ylim([0, 60]);
+  hold on;
+  plot(xlim, [max(maxFitnesses), max(maxFitnesses)], 'color', [0.25, 0.25, 0.25], 'linestyle', '--');
+  hold off;
+
   subplot(1, 2 ,2);
   hist(populationFitnesses);
   xlabel('fitness');

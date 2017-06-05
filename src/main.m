@@ -1,5 +1,8 @@
 function [generation maxFitness maxFitnessIndividual] = main(items = readItems, configuration = parseConfigurationFile('./configuration.txt'))
   addpath(genpath('.'));
+  figure(1);
+  clf;
+  figure(2);
   clf;
   temperature = 1;
   maxFitnesses = [];

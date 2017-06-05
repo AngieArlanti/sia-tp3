@@ -1,5 +1,4 @@
 function [temperature, selected] = selectParents(mode, population, fitnesses, configuration, temperature, k = configuration.k)
-  
   if strcmp(mode, 'selection')
     blend = configuration.selectionBlend;
     method1 = configuration.selectionMethod1;
@@ -16,11 +15,11 @@ function [temperature, selected] = selectParents(mode, population, fitnesses, co
     if configuration.debug == 't'
       disp(cstrcat(mode, ' ', mat2str(method1k), ' with ', method1));
     end
-    method1Selection = selectWithMethod(method1,
+    [method1Selection temperature] = selectWithMethod(method1,
                                         population,
                                         fitnesses,
                                         method1k,
-                                        configuration.temperature,
+                                        configuration,
                                         temperature);
   else
     method1Selection = {};
@@ -32,11 +31,11 @@ function [temperature, selected] = selectParents(mode, population, fitnesses, co
     if configuration.debug == 't'
       disp(cstrcat(mode, ' ', mat2str(method2k), ' with ', method2));
     end
-    method2Selection = selectWithMethod(method2,
+    [method2Selection temperature] = selectWithMethod(method2,
                                         population,
                                         fitnesses,
                                         method2k,
-                                        configuration.temperature,
+                                        configuration,
                                         temperature);
   else
     method2Selection = {};
@@ -53,7 +52,7 @@ function [temperature, selected] = selectParents(mode, population, fitnesses, co
   
 end
 
-function selection = selectWithMethod(selectionMethod, population, fitnesses, k, temperatureConstant, temperature)
+function [selection temperature] = selectWithMethod(selectionMethod, population, fitnesses, k, configuration, temperature)
   switch selectionMethod
   case 'roulette'
     selection = rouletteSelection(population, fitnesses, k);
@@ -62,8 +61,12 @@ function selection = selectWithMethod(selectionMethod, population, fitnesses, k,
   case 'universal'
     selection = universalSelection(population, fitnesses, k);
   case 'boltzmann'
-    [selection, temperature] = boltzmannSelection(population, fitnesses, temperature, temperatureConstant, k);
-  case {'ranking', 'deterministicTournament', 'probabilisticTournament'}
+    [selection, temperature] = boltzmannSelection(population, fitnesses, temperature, configuration.temperature, k);
+  case 'deterministicTournament'
+    selection = deterministicTournamentSelection(population, fitnesses, k, configuration.m);
+  case 'probabilisticTournament'
+    selection = probabilisticTournamentSelection(population, fitnesses, k);
+  case 'ranking'
     disp(strcat(selectionMethod, ' selection not implemented'));
   otherwise
     disp('ERROR: Invalid selection method');
