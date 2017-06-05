@@ -59,6 +59,8 @@ function config = parseConfigurationFile(configurationFilePath)
         config.debug = value;
       case 'contentPreviousIndexToCompare'
         config.contentPreviousIndexToCompare =  str2num(value);
+      case 'structureMaxMatchPercentage'
+        config.structureMaxMatchPercentage = str2double(value);
       case 'hybridWithPartitions'
         config.hybridWithPartitions = value;
     end

@@ -5,9 +5,10 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
   maxFitnesses = [];
   averageFitnesses = [];
   % struct de structs de vector de ids y la h (de cada item)
+  previousPopulation = {};
   population = generatePopulation(configuration.N);
   populationFitnesses = calculateAllFitness(population, items, configuration);
-  while !cutCondition(population, populationFitnesses, generation, configuration,maxFitnesses)
+  while !cutCondition(population, populationFitnesses, generation, configuration,maxFitnesses,previousPopulation)
     % vector de fitness para cada status
 
     [temperature selectedPopulation] = selectForCrossover(population, populationFitnesses, configuration, temperature);
@@ -16,6 +17,7 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
     children = crossover(selectedPopulation, configuration);
     mutatedChildren = mutation(children, configuration.pm);
     childrenFitnesses = calculateAllFitness(mutatedChildren, items, configuration);
+    previousPopulation = population;
     [temperature population] = replacement(population, populationFitnesses, mutatedChildren, childrenFitnesses, configuration, temperature);
     populationFitnesses = calculateAllFitness(population, items, configuration);
     [maxFitness maxFitnessIndex] = max(populationFitnesses);

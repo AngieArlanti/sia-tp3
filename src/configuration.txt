@@ -8,6 +8,7 @@ G=0.6
 m=2
 cutCondition=maxGenerations
 contentPreviousIndexToCompare=10
+structureMaxMatchPercentage=0.8
 maxGenerations=100
 crossoverMethod=uniform
 replacementMethod=r2
