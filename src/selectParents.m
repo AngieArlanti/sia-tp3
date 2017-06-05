@@ -1,7 +1,4 @@
 function [temperature, selected] = selectParents(mode, population, fitnesses, configuration, temperature, k = configuration.k)
-  permutation = randperm(length(population));
-  shuffledPopulation = population(permutation);
-  shuffledFitnesses = fitnesses(permutation);
   
   if strcmp(mode, 'selection')
     blend = configuration.selectionBlend;
@@ -14,53 +11,46 @@ function [temperature, selected] = selectParents(mode, population, fitnesses, co
   end
 
   if (blend != 0)
-    method1Amount = round(length(population) * blend);
-    if strcmp(configuration.hybridWithPartitions, 't')
-      method1Population = shuffledPopulation(1:method1Amount);
-      method1Fitnesses = shuffledFitnesses(1:method1Amount) / blend;
-    else
-      method1Population = shuffledPopulation;
-      method1Fitnesses = shuffledFitnesses;
-    end
-
-    method1k = round(k * blend);
+      
+    method1k = ceil(k * blend);
     if configuration.debug == 't'
       disp(cstrcat(mode, ' ', mat2str(method1k), ' with ', method1));
     end
     method1Selection = selectWithMethod(method1,
-                                        method1Population,
-                                        method1Fitnesses,
+                                        population,
+                                        fitnesses,
                                         method1k,
                                         configuration.temperature,
                                         temperature);
   else
-    method1Amount = 0;
     method1Selection = {};
   end
 
   if (blend != 1)
-    if strcmp(configuration.hybridWithPartitions, 't')
-      method2Population = shuffledPopulation(method1Amount + 1:length(population));
-      method2Fitnesses = shuffledFitnesses(method1Amount + 1:length(fitnesses))/(1 - blend);
-    else
-      method2Population = shuffledPopulation;
-      method2Fitnesses = shuffledFitnesses;
-    end
 
-    method2k = round(k * (1 - blend));
+    method2k = floor(k * (1 - blend));
     if configuration.debug == 't'
       disp(cstrcat(mode, ' ', mat2str(method2k), ' with ', method2));
     end
     method2Selection = selectWithMethod(method2,
-                                        method2Population,
-                                        method2Fitnesses,
+                                        population,
+                                        fitnesses,
                                         method2k,
                                         configuration.temperature,
                                         temperature);
   else
     method2Selection = {};
   end
-  selected = [method1Selection method2Selection];
+  
+  selectedAux = [method1Selection method2Selection];
+  
+  if strcmp(mode, 'selection')  
+    permutation = randperm(length(selectedAux));
+    selected = selectedAux(permutation);
+  else
+    selected = selectedAux;
+  end
+  
 end
 
 function selection = selectWithMethod(selectionMethod, population, fitnesses, k, temperatureConstant, temperature)

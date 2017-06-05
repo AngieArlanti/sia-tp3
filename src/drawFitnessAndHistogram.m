@@ -4,7 +4,7 @@ function result = drawFitnessAndHistogram(maxFitnesses,averageFitnesses,populati
   plot(maxFitnesses, 'r');
   hold on;
   plot(averageFitnesses, 'b');
-  legend('Fitness máximo', 'Fitness promedio');
+  legend({'Fitness máximo', 'Fitness promedio'}, 'location', 'southeast');
   xlabel('generaciones');
   ylabel('fitness');
   if(strcmp(configuration.cutCondition,'maxGenerations'))
