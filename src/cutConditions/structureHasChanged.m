@@ -2,7 +2,7 @@
 function boolean = structureHasChanged(population, previousPopulation ,configuration)
 %Test
 %function boolean = structureHasChanged(population, previousPopulation ,structureMaxMatchPercentage)
-  maxAmountOfDistinctIndividuals = ceil(length(previousPopulation)*configure.structureMaxMatchPercentage);
+  maxAmountOfEqualsIndividuals = ceil(length(previousPopulation)*configuration.structureMaxMatchPercentage);
   %Test
   %maxAmountOfEqualsIndividuals = ceil(length(population)*structureMaxMatchPercentage);
   equalIndividuals = 0;
