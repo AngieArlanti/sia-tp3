@@ -10,7 +10,7 @@ function boolean = cutCondition(population, populationFitnesses, generation, con
   case 'bestSolution'
     %boolean =
   case 'structureHasChanged'
-    boolean = structureHasChanged();
+    boolean = !structureHasChanged();
   case 'content'
   	boolean = !contentHasChanged(maxFitnesses,configuration);
   end
