@@ -30,6 +30,8 @@ function filePath = saveOutputs(finalSeconds, maxFitness, generations,configurat
   fdisp (fid, "MaxFitness: ");
   fdisp (fid, maxFitness);
   fdisp (fid, "");
+  fdisp (fid, "Fu     Ag    Ex    Re    Vi");
+  fdisp (fid, "===============================================");
   fdisp (fid, "Id Arma: ");
   fdisp (fid, idArma);
   fdisp (fid, "");

@@ -8,7 +8,7 @@ function drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,p
 		refresh;	
 	else
 		fpath = ['../tests/' outputFileName '/'];
-		saveas(f1, fullfile(fpath, outputFileName), 'png');
-		saveas(f1, fullfile(fpath, outputFileName), 'png');
+		saveas(f1, fullfile(fpath, ['BestIndividualItems - ' outputFileName]), 'png');
+		saveas(f2, fullfile(fpath, ['FitnessAndHistogram - ' outputFileName]), 'png');
 	end
 end

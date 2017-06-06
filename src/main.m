@@ -1,7 +1,11 @@
-function [generation maxFitness maxFitnessIndividual] = main(items = readItems, configuration = parseConfigurationFile('./configuration.txt'))
+function [generation maxFitness maxFitnessIndividual] = main(pathConfiguration, outputFileName)
+  items = readItems;
+  configuration = parseConfigurationFile(pathConfiguration);
+
   addpath(genpath('.'));
   close all;
   clf;
+  
   temperature = 1;
   maxFitnesses = [];
   averageFitnesses = [];
@@ -29,17 +33,17 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
     averageFitnesses = [averageFitnesses sum(populationFitnesses)/length(populationFitnesses)];
     
     if(configuration.test == 'f')
-      drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration,'outputs1');
+      drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration,outputFileName);
     end
 
     ++generation;
   end
   finalSeconds = time() - initSeconds;
 
-  saveOutputs(finalSeconds, maxFitness, generation,configuration,items, maxFitnessIndividual,'outputs1');
+  saveOutputs(finalSeconds, maxFitness, generation,configuration,items, maxFitnessIndividual,outputFileName);
 
   if(configuration.test == 't')
-      drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration,'outputs1');
+      drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration,outputFileName);
   end
 
 
