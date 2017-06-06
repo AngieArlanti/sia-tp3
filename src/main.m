@@ -10,6 +10,7 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
   population = generatePopulation(configuration.N);
   populationFitnesses = calculateAllFitness(population, items, configuration);
   generation = 1;
+  initSeconds = time();
   while !cutCondition(population, populationFitnesses, generation, configuration,maxFitnesses,previousPopulation)
     % Fitness vector for each status
 
@@ -28,13 +29,18 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
     averageFitnesses = [averageFitnesses sum(populationFitnesses)/length(populationFitnesses)];
     
     if(configuration.test == 'f')
-      drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration);
+      drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration,'outputs1');
     end
 
     ++generation;
   end
+  finalSeconds = time() - initSeconds;
+
+  saveOutputs(finalSeconds, maxFitness, generation,configuration,items, maxFitnessIndividual,'outputs1');
 
   if(configuration.test == 't')
-      drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration);
+      drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration,'outputs1');
   end
+
+
 end

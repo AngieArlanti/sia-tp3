@@ -25,8 +25,6 @@ function config = parseConfigurationFile(configurationFilePath)
         config.pm = str2double(value);
       case 'pc'
         config.pc = str2double(value);
-      case 'G'
-        config.G = str2double(value);
       case 'className'
         config.className = value;
       case 'temperature'

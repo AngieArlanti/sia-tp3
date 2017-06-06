@@ -1,0 +1,81 @@
+Mon Jun 05 21:26:51 2017
+
+
+===============================================
+CONFIGURATION 
+
+
+  scalar structure containing the fields:
+
+    alpha = 0
+    debug = f
+    test = t
+    hybridWithPartitions = t
+    N =  250
+    k =  200
+    pm =  0.10000
+    pc =  0.60000
+    m =  2
+    cutCondition = maxGenerations
+    contentPreviousIndexToCompare =  10
+    structureMaxMatchPercentage =  0.10000
+    bestSolutionFitness =  38
+    maxGenerations =  5
+    crossoverMethod = uniform
+    replacementMethod = r2
+    selectionBlend =  0.050000
+    selectionMethod1 = elite
+    selectionMethod2 = universal
+    selectionBlend2 =  0.050000
+    selectionMethod3 = elite
+    selectionMethod4 = universal
+    temperature =  0.80000
+    className = assasin2
+    fitnessConst1 =  0.70000
+    fitnessConst2 =  0.30000
+
+===============================================
+OUTPUTS
+
+Time (min): 
+ 0.090835
+
+Generations: 
+ 6
+
+MaxFitness: 
+ 22.361
+
+Id Arma: 
+ 272268
+
+Arma: 
+   17.0755   17.3846    6.1537    2.1826    6.9830
+
+Id Bota: 
+ 977130
+
+Bota: 
+   1.888526   0.628126   2.660336   0.072762   2.798691
+
+Id Casco: 
+ 661477
+
+Casco: 
+   8.2414   4.8713   4.9148   5.6109   1.7367
+
+Id Guante: 
+ 299604
+
+Guante: 
+   0.013272   2.885832   3.440203   1.162043   1.677596
+
+Id Pechera: 
+ 729195
+
+Pechera: 
+   19.3284    7.5740    3.2244    5.5268    2.3512
+
+Hight Individual: 
+ 1.9211
+
