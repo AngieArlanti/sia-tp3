@@ -1,0 +1,83 @@
+Tue Jun 06 02:36:48 2017
+
+
+===============================================
+CONFIGURATION 
+
+
+  scalar structure containing the fields:
+
+    alpha = 0
+    debug = f
+    test = t
+    hybridWithPartitions = t
+    N =  250
+    k =  200
+    pm =  0.10000
+    pc =  0.60000
+    m =  2
+    cutCondition = maxGenerations
+    contentPreviousIndexToCompare =  10
+    structureMaxMatchPercentage =  0.10000
+    bestSolutionFitness =  38
+    maxGenerations =  5
+    crossoverMethod = uniform
+    replacementMethod = r2
+    selectionBlend =  0.050000
+    selectionMethod1 = elite
+    selectionMethod2 = universal
+    selectionBlend2 =  0.050000
+    selectionMethod3 = elite
+    selectionMethod4 = universal
+    temperature =  0.80000
+    className = assasin2
+    fitnessConst1 =  0.70000
+    fitnessConst2 =  0.30000
+
+===============================================
+OUTPUTS
+
+Time (min): 
+ 0.10801
+
+Generations: 
+ 6
+
+MaxFitness: 
+ 21.473
+
+Fu     Ag    Ex    Re    Vi
+===============================================
+Id Arma: 
+ 705976
+
+Arma: 
+   17.5964   21.3464    5.0730    1.0715    4.8554
+
+Id Bota: 
+ 989866
+
+Bota: 
+   1.8758   2.1203   1.5524   1.4971   2.7253
+
+Id Casco: 
+ 283672
+
+Casco: 
+   8.27014   8.03905   4.01110   0.10351   5.06847
+
+Id Guante: 
+ 950810
+
+Guante: 
+   2.28241   0.43617   3.36046   0.76522   2.47890
+
+Id Pechera: 
+ 115768
+
+Pechera: 
+    6.17142   11.99809   10.95822    0.36143    9.43810
+
+Hight Individual: 
+ 1.8348
+

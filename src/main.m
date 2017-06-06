@@ -1,9 +1,13 @@
-function [generation maxFitness maxFitnessIndividual] = main(items = readItems, configuration = parseConfigurationFile('./configuration.txt'))
+function [generation maxFitness maxFitnessIndividual] = main(pathConfiguration, outputFileName)
+  items = readItems;
+  configuration = parseConfigurationFile(pathConfiguration);
+
   addpath(genpath('.'));
   figure(1);
   clf;
   figure(2);
   clf;
+  
   temperature = 1;
   maxFitnesses = [];
   averageFitnesses = [];
@@ -12,6 +16,7 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
   population = generatePopulation(configuration.N);
   populationFitnesses = calculateAllFitness(population, items, configuration);
   generation = 1;
+  initSeconds = time();
   while !cutCondition(population, populationFitnesses, generation, configuration,maxFitnesses,previousPopulation)
     % Fitness vector for each status
 
@@ -30,13 +35,18 @@ function [generation maxFitness maxFitnessIndividual] = main(items = readItems, 
     averageFitnesses = [averageFitnesses sum(populationFitnesses)/length(populationFitnesses)];
     
     if(configuration.test == 'f')
-      drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration);
+      drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration,outputFileName);
     end
 
     ++generation;
   end
+  finalSeconds = time() - initSeconds;
+
+  saveOutputs(finalSeconds, maxFitness, generation,configuration,items, maxFitnessIndividual,outputFileName);
 
   if(configuration.test == 't')
-      drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration);
+      drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration,outputFileName);
   end
+
+
 end
