@@ -3,9 +3,6 @@ function [generation maxFitness maxFitnessIndividual] = main(pathConfiguration, 
   configuration = parseConfigurationFile(pathConfiguration);
 
   addpath(genpath('.'));
-  figure(1);
-  clf;
-  figure(2);
   clf;
   
   temperature = 1;
