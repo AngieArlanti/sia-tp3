@@ -1,8 +1,11 @@
-function boolean = cutCondition(population, populationFitnesses, generation, configuration, maxFitnesses, previousPopulation)
+function [type boolean] = cutCondition(population, populationFitnesses, generation, configuration, maxFitnesses, previousPopulation)
 %cutCondition - Description
 %
 % Syntax: boolean = cutCondition(population, populationFitnesses, generation, configuration)
 %
+  type = configuration.cutCondition;
+  content=0;
+  structure=0;
 
   switch configuration.cutCondition
   case 'maxGenerations'
@@ -13,5 +16,15 @@ function boolean = cutCondition(population, populationFitnesses, generation, con
     boolean = !structureHasChanged(population, previousPopulation ,configuration);
   case 'content'
   	boolean = !contentHasChanged(maxFitnesses,configuration);
-  end
+  case 'mixed'
+    if(!contentHasChanged(maxFitnesses,configuration))
+        content=1;
+        type = 'content';
+    endif
+    if(!structureHasChanged(population, previousPopulation ,configuration))
+      structure=1;
+      type = 'structure';
+    endif
+    boolean = (content || structure);
+  endswitch
 end

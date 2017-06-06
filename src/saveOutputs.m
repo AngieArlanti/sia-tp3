@@ -1,4 +1,4 @@
-function filePath = saveOutputs(finalSeconds, maxFitness, generations,configuration,items, maxFitnessIndividual,outputFileName)
+function filePath = saveOutputs(finalSeconds, maxFitness, generations,configuration,items, maxFitnessIndividual,cutType, outputFileName)
 
   mkdir ('../', 'tests');
   mkdir ('../tests/', outputFileName);
@@ -23,6 +23,9 @@ function filePath = saveOutputs(finalSeconds, maxFitness, generations,configurat
   fdisp (fid, "");
   fdisp (fid, "Time (min): ");
   fdisp (fid, finalSeconds/60);
+  fdisp (fid, "");
+  fdisp (fid, "Cut Condition: ");
+  fdisp (fid, cutType);
   fdisp (fid, "");
   fdisp (fid, "Generations: ");
   fdisp (fid, generations);

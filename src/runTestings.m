@@ -1,4 +1,4 @@
 function runTestings()
 
-	main('../tests/test1/configuration1.txt', 'test1');
+	main('../tests/test3/configuration3.txt', 'test3');
 end

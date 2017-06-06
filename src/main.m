@@ -14,7 +14,8 @@ function [generation maxFitness maxFitnessIndividual] = main(pathConfiguration, 
   populationFitnesses = calculateAllFitness(population, items, configuration);
   generation = 1;
   initSeconds = time();
-  while !cutCondition(population, populationFitnesses, generation, configuration,maxFitnesses,previousPopulation)
+  [cutType cut] = cutCondition(population, populationFitnesses, generation, configuration,maxFitnesses,previousPopulation);
+  while !cut
     % Fitness vector for each status
 
     [temperature selectedPopulation] = selectForCrossover(population, populationFitnesses, configuration, temperature);
@@ -36,14 +37,16 @@ function [generation maxFitness maxFitnessIndividual] = main(pathConfiguration, 
     end
 
     ++generation;
+    [cutType cut] = cutCondition(population, populationFitnesses, generation, configuration,maxFitnesses,previousPopulation);
   end
   finalSeconds = time() - initSeconds;
 
-  saveOutputs(finalSeconds, maxFitness, generation,configuration,items, maxFitnessIndividual,outputFileName);
+  saveOutputs(finalSeconds, maxFitness, generation,configuration,items, maxFitnessIndividual,cutType,outputFileName);
 
   if(configuration.test == 't')
       drawPlots(maxFitnessIndividual, items, maxFitnesses, averageFitnesses,populationFitnesses,configuration,outputFileName);
   end
 
+  
 
 end

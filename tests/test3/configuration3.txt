@@ -1,12 +1,12 @@
 debug=f
 test=t
 hybridWithPartitions=t
-N=3000
-k=2000
+N=100
+k=50
 pm=0.1
 pc=0.6
 m=2
-cutCondition=structure
+cutCondition=mixed
 contentPreviousIndexToCompare=10
 structureMaxMatchPercentage=0.1
 bestSolutionFitness=38
