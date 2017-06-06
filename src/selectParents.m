@@ -67,7 +67,7 @@ function [selection temperature] = selectWithMethod(selectionMethod, population,
   case 'probabilisticTournament'
     selection = probabilisticTournamentSelection(population, fitnesses, k);
   case 'ranking'
-    disp(strcat(selectionMethod, ' selection not implemented'));
+    selection = rankingSelection(population, fitnesses, k);
   otherwise
     disp('ERROR: Invalid selection method');
     exit(1);

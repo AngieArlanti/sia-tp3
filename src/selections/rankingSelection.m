@@ -11,6 +11,5 @@ function selection = rankingSelection(population, fitnesses, k)
 		 sumProb += i/(acumulado);
 		probRanking = [probRanking sumProb];
 	end
-	sumProb
 	selection = rouletteSelection(population, probRanking, k);
 end
